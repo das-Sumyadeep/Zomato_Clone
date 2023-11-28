@@ -47,7 +47,7 @@ const Order = () => {
 
   const launchRazorpay = () => {
     let options = {
-      key: "rzp_test_nHnuF37LJsX6FW",
+      key: process.env.REACT_APP_RAZORPAY_KEY,
       amount: GrandPrice * 100,
       currency: "INR",
       name: "Zomato 2.0",
@@ -135,8 +135,8 @@ const Order = () => {
 
         </div>
 
-        <Footer/>
       </div>
+      <Footer />
     </>
   );
 };
