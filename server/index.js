@@ -1,28 +1,28 @@
 require('dotenv').config();
 
-import express from 'express';
-import cors from 'cors';
-import helmet from 'helmet';
-import passport from 'passport';
-import cookieParser from 'cookie-parser';
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
 
 //Database Connection
-import ConnectDb from './database/DBConnection/conn';
+const ConnectDb = require('./database/DBConnection/conn');
 
 //config
-import googleAuthConfig from "./Config/google.config";
-import routeConfig from "./Config/route.config";
+const googleAuthConfig = require("./Config/google.config");
+const routeConfig = require("./Config/route.config");
 
 //API integration
-import Auth from './API/Auth/index';
-import User from './API/User/index';
-import Restaurant from './API/Restaurant/index';
-import Food from './API/Food/index';
-import Menu from './API/Menu/index';
-import Image from './API/Image/index';
-import MenuImage from './API/MenuImage/index';
-import Review from './API/Review/index';
-import Order from './API/Order/index';
+const Auth = require('./API/Auth/index');
+const User =  require('./API/User/index');
+const Restaurant = require('./API/Restaurant/index');
+const Food = require('./API/Food/index');
+const Menu = require('./API/Menu/index');
+const Image = require('./API/Image/index');
+const MenuImage = require('./API/MenuImage/index');
+const Review = require('./API/Review/index');
+const Order = require('./API/Order/index');
 
 const zomato = express();
 
@@ -47,9 +47,7 @@ zomato.use("/menuimage", MenuImage);
 zomato.use("/review", Review);
 zomato.use("/order", Order);
 
-zomato.get('/', (req, res) => res.json({ message: "yay! we did it." }));
-
-zomato.listen(process.env.PORT, () => {
+zomato.listen('3001', () => {
     if (ConnectDb()) {
         console.log("Server is running and connected!");
     } else {

@@ -1,11 +1,11 @@
-import express from 'express';
-import passport from 'passport';
-import mongoose from 'mongoose';
+const express = require('express');
+const passport = require('passport');
+const mongoose = require('mongoose');
 
-import OrderModel from '../../database/order/order';
+const OrderModel = require('../../database/order/order');
 
 //validation
-import { ValidationSignUp, ValidationSignIn } from '../../Validation/auth';
+const { ValidationSignUp, ValidationSignIn } = require('../../Validation/auth');
 
 const Router = express.Router();
 

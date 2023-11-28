@@ -1,7 +1,7 @@
-import express from 'express';
-import mongoose from 'mongoose';
+const express = require('express');
+const mongoose = require('mongoose');
 
-import MenuModel from '../../database/menu/menu';
+const MenuModel = require('../../database/menu/menu');
 
 const Router = express.Router();
 
@@ -53,7 +53,7 @@ Router.post('/newMenu/:_id', async (req, res) => {
         const { newMenu } = req.body;
         const { _id } = req.params;
 
-        const MenuDoc = await MenuModel.findOneAndUpdate({ restaurant: _id }, { $push: { menu: { $each: [newMenu] } } } );
+        const MenuDoc = await MenuModel.findOneAndUpdate({ restaurant: _id }, { $push: { menu: { $each: [newMenu] } } });
 
         if (MenuDoc === null) {
 
@@ -79,7 +79,7 @@ Router.post('/newItem', async (req, res) => {
         const { newItem } = req.body;
         const { _id, category } = req.query;
 
-        const ItemDoc = await MenuModel.findOneAndUpdate({ restaurant: _id , 'menu.category': category}, { $push: { 'menu.$.items': { $each: [newItem] } } });
+        const ItemDoc = await MenuModel.findOneAndUpdate({ restaurant: _id, 'menu.category': category }, { $push: { 'menu.$.items': { $each: [newItem] } } });
 
         if (!ItemDoc) {
             return res.status(404).json({ message: "Restaurant not found" });

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node index"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
@@ -26,11 +26,5 @@
     "passport": "^0.4.1",
     "passport-google-oauth20": "^2.0.0",
     "passport-jwt": "^4.0.1"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.22.15",
-    "@babel/core": "^7.22.17",
-    "@babel/node": "^7.22.15",
-    "@babel/preset-env": "^7.22.15"
   }
 }

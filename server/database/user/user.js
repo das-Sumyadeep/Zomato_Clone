@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const UserSchema = new mongoose.Schema({
 
@@ -71,4 +71,4 @@ UserSchema.methods.generateJwt = async function () {
 
 const UserModel = mongoose.model('Users', UserSchema);
 
-export default UserModel
+module.exports = UserModel

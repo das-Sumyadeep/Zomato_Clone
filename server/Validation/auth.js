@@ -1,6 +1,6 @@
-import joi from 'joi';
+const joi = require('joi');
 
-export const ValidationSignUp = (userData) => {
+const ValidationSignUp = (userData) => {
 
     const Schema = joi.object({
         fullname: joi.string().required().min(3),
@@ -12,7 +12,7 @@ export const ValidationSignUp = (userData) => {
     return Schema.validateAsync(userData);
 };
 
-export const ValidationSignIn = (userData) => {
+const ValidationSignIn = (userData) => {
 
     const Schema = joi.object({
         email: joi.string().email().required().lowercase(),
@@ -21,3 +21,5 @@ export const ValidationSignIn = (userData) => {
 
     return Schema.validateAsync(userData);
 };
+
+module.exports = {ValidationSignUp, ValidationSignIn}

@@ -1,7 +1,7 @@
-import express from 'express';
-import passport from 'passport';
+const express = require('express');
+const passport = require('passport');
 
-import UserModel from '../../database/user/user';
+const UserModel = require('../../database/user/user');
 
 const Router = express.Router();
 

@@ -1,11 +1,11 @@
-import express from 'express';
-import multer from 'multer';
-import { S3Client } from '@aws-sdk/client-s3';
-import { Upload } from '@aws-sdk/lib-storage';
+const express = require('express');
+const multer = require('multer');
+const { S3Client } = require('@aws-sdk/client-s3');
+const { Upload } = require('@aws-sdk/lib-storage');
 
 // databaseof the image
-import MenuImageModel from '../../database/menuImage/menuImage';
-import RestaurantModel from '../../database/restaurant/restau'
+const MenuImageModel = require('../../database/menuImage/menuImage');
+const RestaurantModel = require('../../database/restaurant/restau')
 // utility 
 // import {s3Upload} from '../../Utility/AWS/s3';
 
@@ -18,8 +18,8 @@ const upload = multer({ storage });
 const s3Client = new S3Client({
     region: 'ap-south-1',
     credentials: {
-        accessKeyId: "",
-        secretAccessKey: ""
+        accessKeyId: process.env.AWS_S3_ACCESS_KEY,
+        secretAccessKey: process.env.AWS_S3_SECRET_KEY
     }
 });
 
@@ -30,7 +30,7 @@ Router.post('/', upload.single("file"), async (req, res) => {
         const file = req.file;
 
         const bucketOptions = {
-            Bucket: "",
+            Bucket: process.env.s3_BUCKET,
             Key: file.originalname,
             Body: file.buffer,
             ContentType: file.mimetype,
@@ -85,7 +85,7 @@ Router.post('/insertMenu', upload.single("file"), async (req, res) => {
         const file = req.file;
 
         const bucketOptions = {
-            Bucket: "",
+            Bucket: process.env.s3_BUCKET,
             Key: file.originalname,
             Body: file.buffer,
             ContentType: file.mimetype,

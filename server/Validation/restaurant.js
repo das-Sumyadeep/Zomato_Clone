@@ -1,6 +1,6 @@
-import joi from 'joi';
+const joi = require('joi');
 
-export const ValidateRestaurantCity = (restData) => {
+const ValidateRestaurantCity = (restData) => {
 
     const Schema = joi.object({
         
@@ -11,7 +11,7 @@ export const ValidateRestaurantCity = (restData) => {
     return Schema.validateAsync(restData);
 };
 
-export const ValidateRestaurantSearchString = (restData) =>{
+const ValidateRestaurantSearchString = (restData) =>{
 
     const Schema = joi.object({
         
@@ -21,3 +21,5 @@ export const ValidateRestaurantSearchString = (restData) =>{
 
     return Schema.validateAsync(restData);
 }
+
+module.exports = {ValidateRestaurantCity, ValidateRestaurantSearchString}

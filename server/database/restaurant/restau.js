@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const RestaurantSchema = new mongoose.Schema({
 
@@ -20,4 +20,4 @@ const RestaurantSchema = new mongoose.Schema({
 
 const RestaurantModel = mongoose.model("Restaurants", RestaurantSchema);
 
-export default RestaurantModel;
+module.exports = RestaurantModel;

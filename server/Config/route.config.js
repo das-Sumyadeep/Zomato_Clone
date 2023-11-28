@@ -1,6 +1,6 @@
-import JwtPassport from 'passport-jwt';
+const JwtPassport = require('passport-jwt');
 
-import UserModel from '../database/user/user';
+const UserModel = require('../database/user/user');
 
 
 const JwtStrategy = JwtPassport.Strategy;
@@ -8,10 +8,11 @@ const ExtractJwt = JwtPassport.ExtractJwt;
 
 const opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: ''
+    secretOrKey: "ZomatoApp"
+
 }
 
-export default (passport) => {
+module.exports = (passport) => {
 
     passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
 

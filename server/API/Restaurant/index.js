@@ -1,12 +1,12 @@
-import express from 'express';
-import mongoose from 'mongoose';
+const express = require('express');
+const mongoose = require('mongoose');
 
-import RestaurantModel from '../../database/restaurant/restau';
-import ImageModel from '../../database/image/image';
+const RestaurantModel = require('../../database/restaurant/restau');
+const ImageModel = require('../../database/image/image');
 
 // Validation
-import { ValidateRestaurantCity, ValidateRestaurantSearchString } from '../../Validation/restaurant';
-import { ValidationRestId } from '../../Validation/food';
+const { ValidateRestaurantCity, ValidateRestaurantSearchString } = require('../../Validation/restaurant');
+const { ValidationRestId } = require('../../Validation/food');
 
 const Router = express.Router();
 

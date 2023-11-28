@@ -1,12 +1,12 @@
-import express from 'express';
-import mongoose from 'mongoose'
-import passport from 'passport'
+const express = require('express');
+const mongoose = require('mongoose');
+const passport = require('passport');
 
-import ReviewModel from '../../database/reviews/review';
-import UserModel from '../../database/user/user'
+const ReviewModel = require('../../database/reviews/review');
+const UserModel = require('../../database/user/user')
 
 //validation
-import { ValidationSignUp, ValidationSignIn } from '../../Validation/auth';
+const { ValidationSignUp, ValidationSignIn } = require('../../Validation/auth');
 
 const Router = express.Router();
 
@@ -85,6 +85,19 @@ Router.get('/all/:rest_id', async (req, res) => {
     }
 });
 
+// Router.delete("/delete/:_id", async(req, res)=> {
 
+//     try{
+
+//         const {_id} = req.params;
+
+//         await ReviewModel.findByIdAndDelete(_id);
+
+//         return res.json({message: "Successfully Deleted review"});
+//     }
+//     catch(error){
+//         return res.status(500).json({error: error.message});
+//     }
+// });
 
 module.exports = Router;

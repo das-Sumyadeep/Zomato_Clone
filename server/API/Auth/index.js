@@ -1,11 +1,11 @@
-import express from 'express';
-import passport from 'passport';
-import bcrypt from 'bcrypt';
+const express = require('express');
+const passport = require('passport');
+const bcrypt = require('bcrypt');
 
-import UserModel from '../../database/user/user';
+const UserModel = require('../../database/user/user');
 
 //validation
-import { ValidationSignUp, ValidationSignIn } from '../../Validation/auth';
+const { ValidationSignUp, ValidationSignIn } = require('../../Validation/auth');
 
 const Router = express.Router();
 
@@ -80,7 +80,7 @@ Router.get('/logout', (req, res) => {
 
         req.logout();
         res.clearCookie('jwt');
-        res.redirect('http://localhost:3000');
+        res.redirect(process.env.BASE_URL);
     } catch (err) {
         return res.status(500).json({ error: "Internal server Error" });
     }
@@ -91,14 +91,14 @@ Router.get("/google", passport.authenticate('google', {
 }));
 
 
-Router.get('/google/callback', passport.authenticate('google', { failureRedirect: 'http://localhost:3000/login' }),
+Router.get('/google/callback', passport.authenticate('google', { failureRedirect: process.env.BASE_URL }),
     (req, res) => {
 
         try {
 
             if (req.user && req.user.token) {
-                res.cookie('jwt', req.user.token, { httpOnly: false, maxAge: 24 * 60 *60 , secure: false });
-                res.redirect('http://localhost:3000');
+                res.cookie('jwt', req.user.token, { httpOnly: false, maxAge: 24 * 60 * 60, secure: false });
+                res.redirect(process.env.BASE_URL);
 
             }
         } catch (err) {

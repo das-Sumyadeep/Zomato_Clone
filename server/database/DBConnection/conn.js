@@ -1,8 +1,9 @@
 
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-export default async() => {
+const database = async () => {
 
     return await mongoose.connect(process.env.MONGO_URL);
 
 };
+module.exports = database;

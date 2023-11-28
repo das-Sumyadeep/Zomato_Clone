@@ -1,9 +1,9 @@
-import express from 'express';
+const express = require('express');
 
-import FoodModel from '../../database/food/food';
+const FoodModel = require('../../database/food/food');
 
 // validation
-import { ValidationRestId, ValidationCategory } from '../../Validation/food';
+const { ValidationRestId, ValidationCategory } = require('../../Validation/food');
 
 const Router = express.Router();
 

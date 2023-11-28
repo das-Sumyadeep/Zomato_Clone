@@ -1,16 +1,17 @@
 
-import googleOAuth from "passport-google-oauth20";
+const googleOAuth = require("passport-google-oauth20");
 
-import UserModel from "../database/user/user";
+const UserModel = require("../database/user/user");
 
 const GoogleStrategy = googleOAuth.Strategy;
 
-export default (passport) => {
+module.exports = (passport) => {
     passport.use(
         new GoogleStrategy({
             clientID: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-            callbackURL: process.env.GOOGLE_CALLBACK_URL
+            callbackURL: process.env.GOOGLE_CALLBACK_URL,
+            
         },
             async (accessToken, refreshToken, profile, done) => {
                 //    done(null, profile)
