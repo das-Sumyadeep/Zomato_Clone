@@ -22,7 +22,6 @@ const UserSlice = createSlice({
         },
         ReqSingle: (state, action) => {
             state.isLoading = false;
-            state.isError = false;
             state.User = action.payload;
         },
         ReqRejected: (state) => {

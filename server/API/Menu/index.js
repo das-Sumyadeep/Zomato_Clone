@@ -66,7 +66,7 @@ Router.post('/newMenu/:_id', async (req, res) => {
         return res.status(200).json({ message: "Successfully added" });
 
     } catch (error) {
-        console.log(error);
+        // console.log(error);
         return res.status(500).json({ error: error.message });
     }
 });

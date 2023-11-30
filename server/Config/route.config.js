@@ -8,7 +8,7 @@ const ExtractJwt = JwtPassport.ExtractJwt;
 
 const opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: "ZomatoApp"
+    secretOrKey: process.env.JWT_SECRET_KEY
 
 }
 

@@ -15,6 +15,7 @@ import { updateAddress } from '../../Redux/User/ApiCalls'
 import SignIn from './SignIn'
 import SignUp from './SignUp'
 import { status } from '../../Redux/User/UserSlice'
+import Cookies from 'universal-cookie';
 
 const MobileHead = () => {
 
@@ -31,7 +32,8 @@ const MobileHead = () => {
     const dispatch = useDispatch();
     const { searchResponse, isError, error } = useSelector((state) => state.search);
     const { locity } = useSelector((state) => state.location)
-    const { User } = useSelector((state) => state.user)
+    const { token, User } = useSelector((state) => state.user)
+
 
     const handleSearch = (e) => {
 
@@ -59,22 +61,30 @@ const MobileHead = () => {
     }
 
     const handleAddress = () => {
-        setAddress((prev) => !prev);
+        if (User._id) {
+
+            setAddress((prev) => !prev);
+        } else {
+            setLoc((prev) => !prev);
+            dispatch(status("Unauthorized User"));
+        }
     }
 
     const onChangeHandler = (e) => {
-        setNewAddress(() => e.target.value);
+        setNewAddress((prevAddress) => ({ ...prevAddress, address: e.target.value }));
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(newAddress);
+        updateAddress(User._id, newAddress, token, dispatch);
         setAddress((prev) => !prev);
         setLoc((prev) => !prev);
     }
 
     const handleLogout = () => {
-        window.location.href = 'http://localhost:3001/auth/logout';
+        const cookies = new Cookies();
+        cookies.remove('jwt', { path: '/' });
+        window.location.href = 'http://localhost:5000/auth/logout';
     }
 
     return (
@@ -99,7 +109,7 @@ const MobileHead = () => {
                 <div className='w-48 h-36 absolute border-2 shadow-lg right-0 top-16 bg-Zomato-1002 rounded-lg z-50' style={{ display: profile ? 'block' : 'none' }}>
                     {
 
-                        User && User._id ?
+                        User && User?._id ?
                             <div className='flex flex-col items-start gap-y-8 px-3 py-4'>
 
                                 <div className='flex items-center justify-start gap-x-2 text-lg'>
@@ -130,7 +140,7 @@ const MobileHead = () => {
                 <div className='py-3 px-5 flex items-center justify-between shadow-sm h-14'>
                     <div className='flex items-center gap-2' onClick={() => setlocationBar(true)}>
                         <MdLocationPin className='text-Zomato-300 w-6 h-6' />
-                        <span className='font-semibold text-sm'>{ locity && `${locity}`}</span>
+                        <span className='font-semibold text-sm'>{locity && `${locity}`}</span>
                     </div>
                     <span className='rounded-full p-2 bg-gray-100' onClick={() => setSearchBar(true)}>
                         <BiSearch className='text-black w-6 h-6' />
@@ -241,7 +251,7 @@ const TabHead = () => {
     const dispatch = useDispatch();
     const { searchResponse, isError, error } = useSelector((state) => state.search);
     const { locity } = useSelector((state) => state.location)
-    const { User } = useSelector((state) => state.user)
+    const { token, User } = useSelector((state) => state.user)
 
     const handleSearch = (e) => {
 
@@ -271,22 +281,30 @@ const TabHead = () => {
     }
 
     const handleAddress = () => {
-        setAddress((prev) => !prev);
+        if (User._id) {
+
+            setAddress((prev) => !prev);
+        } else {
+            setLoc((prev) => !prev);
+            dispatch(status("Unauthorized User"));
+        }
     }
 
     const onChangeHandler = (e) => {
-        setNewAddress(() => e.target.value);
+        setNewAddress((prevAddress) => ({ ...prevAddress, address: e.target.value }));
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(newAddress);
+        updateAddress(User._id, newAddress, token, dispatch);
         setAddress((prev) => !prev);
         setLoc((prev) => !prev);
     }
 
     const handleLogout = () => {
-        window.location.href = 'http://localhost:3001/auth/logout';
+        const cookies = new Cookies();
+        cookies.remove('jwt', { path: '/' });
+        window.location.href = 'http://localhost:5000/auth/logout';
     }
 
     return (
@@ -303,7 +321,7 @@ const TabHead = () => {
                     </NavLink>
                     {
 
-                        User && User._id ?
+                        User && User?._id ?
                             <div className='flex items-center gap-x-2'>
 
                                 <div className='rounded-full w-10'>
@@ -501,7 +519,9 @@ const LapHead = () => {
     }
 
     const handleLogout = () => {
-        window.location.href = 'http://localhost:3001/auth/logout';
+        const cookies = new Cookies();
+        cookies.remove('jwt', { path: '/' });
+        window.location.href = 'http://localhost:5000/auth/logout';
     }
 
     return (
@@ -523,7 +543,7 @@ const LapHead = () => {
                     border shadow-md'>
                             <div className='flex items-center border-r-2 gap-2'>
                                 <MdLocationPin className='text-Zomato-300 w-6 h-6' onClick={handleLocation} />
-                                <input type='search' className='w-40 lg:w-20 focus:outline-none ' placeholder={locity && `${locity}` } value={city} onChange={handleCity} />
+                                <input type='search' className='w-40 lg:w-20 focus:outline-none ' placeholder={locity && `${locity}`} value={city} onChange={handleCity} />
                                 {loc ? <GoTriangleUp className='mx-3 w-6 h-6 cursor-pointer' onClick={handleLocation} /> : <GoTriangleDown className='mx-3 w-6 h-6 cursor-pointer' onClick={handleLocation} />}
                             </div>
 

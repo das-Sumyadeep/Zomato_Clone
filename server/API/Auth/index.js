@@ -13,20 +13,22 @@ const Router = express.Router();
 Router.post("/signup", async (req, res) => {
     try {
 
-        const ValidData = await ValidationSignUp(req.body);
+        const formData = req.body;
+
+        // const ValidData = await ValidationSignUp(formData);
 
         // calling static function using the model
-        await UserModel.checkEmail(ValidData);
+        await UserModel.checkEmail(formData);
 
         // storing data to the database
-        const UserData = await UserModel.create(ValidData);
+        const UserData = await UserModel.create(formData);
 
         if (UserData) {
             return res.status(200).json({
                 message: "Successfully Created",
             });
         } else {
-            return res.status(401).json({ message: "Invalid Credentials" })
+            return res.json({ message: "Invalid Credentials" });
         }
 
     } catch (error) {
@@ -40,6 +42,7 @@ Router.post("/signin", async (req, res) => {
     try {
 
         const ValidData = await ValidationSignIn(req.body);
+        // console.log(ValidData);
         const { email, password } = ValidData;
 
         const UserExist = await UserModel.findOne({ email });
@@ -68,18 +71,23 @@ Router.post("/signin", async (req, res) => {
 
 
 Router.get("/login/success", passport.authenticate("jwt", { session: false }), (req, res) => {
+    try {
 
-    return res.status(200).json({
-        message: "User Authenticated",
-        user: req.user
-    });
+        return res.status(200).json({
+            message: "User Authenticated",
+            user: req.user
+        });
+    } catch (err) {
+        return res.status(500).json({ error: "Internal server Error" });
+    }
+
 });
 
 Router.get('/logout', (req, res) => {
     try {
 
-        req.logout();
-        res.clearCookie('jwt');
+        // req.logOut();
+        // res.clearCookie('jwt');
         res.redirect(process.env.BASE_URL);
     } catch (err) {
         return res.status(500).json({ error: "Internal server Error" });

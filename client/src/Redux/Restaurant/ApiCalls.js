@@ -38,7 +38,7 @@ export const getSearch = async (city, search, dispatch) => {
         let Locity = city.toLowerCase(); 
         const res = await Api.get(`restaurant/search/${search}/${Locity}`);
         dispatch(RequestDone(res.data.restaurants));
-        console.log(res.data.restaurants);
+        // console.log(res.data.restaurants);
     }
     catch (err) {
         dispatch(RequestReject(err.response.data));

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import { deleteAll } from '../../Redux/Cart/ApiCalls';
+import { FaArrowCircleRight } from "react-icons/fa";
 
 const CartDiv = () => {
 
@@ -27,7 +28,7 @@ const CartDiv = () => {
                         <NavLink to={`/${params.type}/${params.id}/cart`}>
                             <button className='font-semibold xs:text-md xm:text-xl md:text-xl lg:text-2xl xl:text-2xl text-black rounded-lg bg-red-200 px-3 py-2 hover:bg-white hover:text-red-500' 
                             disabled={Loading}
-                            >Continue</button>
+                            ><FaArrowCircleRight/></button>
                         </NavLink>
                     </div>
                 </div>

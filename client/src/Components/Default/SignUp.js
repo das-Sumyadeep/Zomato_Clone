@@ -15,7 +15,7 @@ const SignUp = (props) => {
   };
 
   const google = () => {
-    window.location.href = 'http://localhost:3001/auth/google';
+    window.location.href = 'http://localhost:5000/auth/google';
   }
 
   const handleSubmit = (event) => {

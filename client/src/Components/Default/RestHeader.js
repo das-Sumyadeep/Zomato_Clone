@@ -10,6 +10,7 @@ import { BiSolidUserCircle, BiSearch } from 'react-icons/bi';
 import SearchDiv from './SearchDiv';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
+import Cookies from 'universal-cookie';
 
 const SmRestHeader = () => {
 
@@ -34,7 +35,9 @@ const SmRestHeader = () => {
     }
 
     const handleLogout = () => {
-        window.location.href = 'http://localhost:3001/auth/logout';
+        const cookies = new Cookies();
+        cookies.remove('jwt', { path: '/' });
+        window.location.href = 'http://localhost:5000/auth/logout';
     }
 
     return (
@@ -54,14 +57,13 @@ const SmRestHeader = () => {
                     <div className='flex items-center gap-2'>
                         {/* <button className='bg-Zomato-400 text-sm font-semibold px-3 py-2 text-white rounded-full'>Use App</button> */}
                         <span className='rounded-full w-8'>
-                            <BiSolidUserCircle className='w-full h-full text-black' onClick={() => setProfile(!profile)}/>
+                            <BiSolidUserCircle className='w-full h-full text-black' onClick={() => setProfile(!profile)} />
                         </span>
                     </div>
                 </div>
 
                 <div className='w-48 h-36 absolute border-2 shadow-lg right-0 top-16 bg-Zomato-1002 rounded-lg z-50' style={{ display: profile ? 'block' : 'none' }}>
                     {
-
                         User && User._id ?
                             <div className='flex flex-col items-start gap-y-8 px-3 py-4'>
 
@@ -134,7 +136,9 @@ const LgRestHeader = () => {
     }
 
     const handleLogout = () => {
-        window.location.href = 'http://localhost:3001/auth/logout';
+        const cookies = new Cookies();
+        cookies.remove('jwt', { path: '/' });
+        window.location.href = 'http://localhost:5000/auth/logout';
     }
 
     return (

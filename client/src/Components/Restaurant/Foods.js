@@ -14,7 +14,7 @@ const Foods = (props) => {
     const { token, User } = useSelector(state => state.user);
     const handleCart = (id) => {
 
-        if(User._id) {
+        if(User?._id) {
 
             const orderDetails = {
                 restaurant: params.id,
@@ -22,7 +22,7 @@ const Foods = (props) => {
                 quantity: 1
             };
             // Dispatch the action with the updated state
-            InCart(User._id, params.id, dispatch, orderDetails, token);
+            InCart(User?._id, params.id, dispatch, orderDetails, token);
         }else{
             dispatch(status("Unauthorized User"));
         }

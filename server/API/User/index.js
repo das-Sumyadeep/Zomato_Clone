@@ -20,11 +20,11 @@ Router.get("/:_id", async (req, res) => {
     }
 });
 
-Router.put("/update/:userId",passport.authenticate("jwt", { session: false }), async (req, res) => {
+Router.put("/update/:userId", passport.authenticate("jwt", { session: false }), async (req, res) => {
     try {
         const { userId } = req.params;
         const { address } = req.body;
-    
+
         const updatedUser = await UserModel.findByIdAndUpdate(
             { _id: userId },
             { $push: { address: { $each: [address] } } },

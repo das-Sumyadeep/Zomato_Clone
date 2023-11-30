@@ -33,24 +33,24 @@ export const Home = () => {
 
 
   const { locity } = useSelector(state => state.location);
-  console.log(locity);
-  
+  // console.log(locity);
+
   useEffect(() => {
-    
+
     navigator.geolocation.getCurrentPosition((position) => {
       //getting latitude and longitude from the position obj
       const { latitude, longitude } = position.coords;
-      
+
       locity === "" && getLoca(latitude, longitude, dispatch);
 
     });
 
     locity && getRestaurants(locity, dispatch);
-    
-  }, [locity, dispatch]);
-  
 
-  const { Status, User } = useSelector((state) => state.user);
+  }, [locity, dispatch]);
+
+
+  const { Status } = useSelector((state) => state.user);
 
   useEffect(() => {
     setTimeout(() => {
@@ -62,11 +62,9 @@ export const Home = () => {
     <>
       <Header />
       {
-        (Status && User._id) && <div className='font-semibold container mx-auto rounded-lg p-2 mt-3 bg-green-500 text-white xl:text-xl lg:text-lg xm:text-md w-full text-center relative top-0 left-0 '>{Status}</div>
+        Status && <div className='font-semibold container mx-auto rounded-lg p-2 mt-3 bg-yellow-500 text-black xl:text-xl lg:text-lg xm:text-md w-full text-center relative top-0 left-0 '>{Status}</div>
       }
-      {
-        (Status && !User._id) && <div className='font-semibold container mx-auto rounded-lg p-2 mt-3 bg-red-500 text-white xl:text-xl lg:text-lg xm:text-md w-full text-center relative top-0 left-0 '>{Status}</div>
-      }
+
       <Outlet />
       <Footer />
     </>

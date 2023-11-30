@@ -16,8 +16,8 @@ const Footer = () => {
 
         <div className='bg-Zomato-1003 py-12 mt-24'>
 
-          <div className='container mx-auto bottom-0'>
-            <div className='flex items-center justify-between'>
+          <div className='container mx-auto '>
+            <div className='flex items-center justify-between bottom-0'>
               <div className='w-36 h-8 flex items-center gap-x-3 '>
                 <img src={logo} alt='logo' className='w-full h-full' />
                 {/* <p className='font-medium text-red-500 text-xl'>2.0</p> */}
@@ -33,7 +33,7 @@ const Footer = () => {
             </div>
 
 
-            <div className='my-10 flex items-start justify-start xl:gap-x-36 xm:gap-x-12 md:gap-x-10 lg:gap-x-16'>
+            <div className='my-10 flex items-start justify-start xl:gap-x-36 xm:gap-x-10 md:gap-x-10 lg:gap-x-16'>
               <div>
                 <p className='font-medium tracking-wider'>ABOUT ZOMATO</p>
                 <ul className='flex flex-col gap-y-2 mt-4 text-gray-500'>
@@ -74,15 +74,15 @@ const Footer = () => {
                   <li>Sitemap</li>
                 </ul>
               </div>
-              <div>
-                <p className='font-medium tracking-wider '>SOCIAL LINKS</p>
-                <div className='flex items-center justify-start gap-x-2 mt-4 cursor-pointer'>
-                  <FaLinkedin className='w-6 h-6' />
-                  <FaInstagramSquare className='w-6 h-6' />
-                  <FaYoutube className='w-6 h-6' />
-                  <FaTwitter className='w-6 h-6' />
-                  <FaFacebook className='w-6 h-6' />
-                </div>
+            </div>
+            <div>
+              <p className='font-medium tracking-wider '>SOCIAL LINKS</p>
+              <div className='flex items-center justify-start gap-x-2 mt-4 cursor-pointer'>
+                <FaLinkedin className='w-6 h-6' />
+                <FaInstagramSquare className='w-6 h-6' />
+                <FaYoutube className='w-6 h-6' />
+                <FaTwitter className='w-6 h-6' />
+                <FaFacebook className='w-6 h-6' />
               </div>
             </div>
           </div>
@@ -98,7 +98,7 @@ const Footer = () => {
             <div className='flex flex-col items-start gap-y-10'>
               <div className='w-36 h-8 flex items-center gap-x-3 '>
                 <img src={logo} alt='logo' className='w-full h-full' />
-                <p className='font-medium text-red-500 text-xl'>2.0</p>
+                {/* <p className='font-medium text-red-500 text-xl'>2.0</p> */}
               </div>
               <div className='flex items-center gap-x-4'>
                 <div className='border-2 border-gray-300 rounded-lg w-32 flex items-center gap-x-3 px-2 py-1 text-xl cursor-pointer'>
@@ -149,7 +149,6 @@ const Footer = () => {
                   <li>Terms</li>
                   <li>Sitemap</li>
                 </ul>
-
 
                 <p className='font-medium tracking-wider sm:mt-3 xs:mt-3'>SOCIAL LINKS</p>
                 <div className='flex items-center justify-start gap-x-2 mt-4 cursor-pointer'>
